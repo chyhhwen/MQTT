@@ -46,8 +46,26 @@ nav
     display: flex;
     justify-content: center;
 }
+.state table
+{
+    width:20vw;
+    margin-left: 5vw;
+    margin-right: 5vw;
+}
 td
 {
     font-weight:bold;
     font-size:200%;
+}
+footer
+{
+    height: 10vh;
+    width:90vw;
+    background: white;
+    margin-left: 5vw;
+    margin-top: 1vw;
+    border-radius:0.5em;
+    display: flex;
+    display: flex;
+    justify-content: center;
 }

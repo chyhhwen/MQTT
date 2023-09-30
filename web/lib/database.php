@@ -49,7 +49,32 @@ class sql
         }
         unset($pdo);
     }
-    public function sel()
+    public function led_sel()
+    {
+        $pdo = $this->conn();
+        $sql = "SELECT * FROM `". $this->db ."` ORDER BY time DESC LIMIT 1";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+        $comments = array();
+        try
+        {
+            while($row = $stmt->fetch(PDO::FETCH_ASSOC))
+            {
+                array_push($comments, array(
+                    "id" => $row[$this->field[0]],
+                    "state" => $row[$this->field[1]],
+                    "time" => $row[$this->field[2]]
+                ));
+            }
+        }
+        catch (PDOException $e)
+        {
+            die();
+        }
+        unset($pdo);
+        return $comments;
+    }
+    public function dht_sel()
     {
         $pdo = $this->conn();
         $sql = "SELECT * FROM `". $this->db ."` ORDER BY time DESC LIMIT 1";
@@ -76,5 +101,58 @@ class sql
         unset($pdo);
         return $comments;
     }
+    public function flame_sel()
+    {
+        $pdo = $this->conn();
+        $sql = "SELECT * FROM `". $this->db ."` ORDER BY time DESC LIMIT 1";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+        $comments = array();
+        try
+        {
+            while($row = $stmt->fetch(PDO::FETCH_ASSOC))
+            {
+                array_push($comments, array(
+                    "id" => $row[$this->field[0]],
+                    "state" => $row[$this->field[1]],
+                    "heat" => $row[$this->field[2]],
+                    "time" => $row[$this->field[3]]
+                ));
+            }
+        }
+        catch (PDOException $e)
+        {
+            die();
+        }
+        unset($pdo);
+        return $comments;
+    }
+    public function control_sel()
+        {
+            $pdo = $this->conn();
+            $sql = "SELECT * FROM `". $this->db ."` ORDER BY time DESC LIMIT 1";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
+            $comments = array();
+            try
+            {
+                while($row = $stmt->fetch(PDO::FETCH_ASSOC))
+                {
+                    array_push($comments, array(
+                        "id" => $row[$this->field[0]],
+                        "dht11" => $row[$this->field[1]],
+                        "flame" => $row[$this->field[2]],
+                        "led" => $row[$this->field[3]],
+                        "time" => $row[$this->field[4]]
+                    ));
+                }
+            }
+            catch (PDOException $e)
+            {
+                die();
+            }
+            unset($pdo);
+            return $comments;
+        }
 }
 ?>

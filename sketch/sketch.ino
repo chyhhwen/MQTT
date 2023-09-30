@@ -46,7 +46,7 @@ void loop()
  {
         HTTPClient http;
 
-        http.begin("https://192.168.1.115/api/add.php");
+        http.begin("https://192.168.1.125/api/add.php");
 
         String postData = "temp="; 
         postData = postData + (int)temperature; 

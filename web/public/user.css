@@ -1,0 +1,39 @@
+body
+{
+    margin:0px;
+    border:0px;
+    background-color: #d7d7d7;
+}
+h1,h2,h3,h4,h5,h6
+{
+    margin:0%;
+}
+a
+{
+    text-decoration: none;
+    color: black;
+}
+a:hover
+{
+    color:#bb5a3a;
+}
+
+td
+{
+    font-weight:bold;
+    font-size:200%;
+    display: inline-block;
+    vertical-align: middle;
+    width: 12vw;
+    height: 10vh;
+}
+table
+{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #efefef;
+    border-radius: 0.5em;
+    border-style:groove;
+}
