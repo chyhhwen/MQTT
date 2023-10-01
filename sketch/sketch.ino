@@ -1,8 +1,8 @@
 #include<WiFi.h>
 #include <HTTPClient.h>
 #include <SimpleDHT.h>
-
 int pinDHT11 = 13;
+int pinflame = 12;
 SimpleDHT11 dht11(pinDHT11);
 
 const char ssid[]="122-wifi"; 
@@ -10,6 +10,8 @@ const char pwd[]="123456789";
 
 void setup() 
 {
+  pinMode(pinflame, INPUT);
+
   Serial.begin(9600);
 
   WiFi.mode(WIFI_STA); 
@@ -33,6 +35,7 @@ void setup()
 
 void loop() 
 {
+
   byte temperature = 0;
   byte humidity = 0;
   int err = SimpleDHTErrSuccess;
@@ -45,8 +48,8 @@ void loop()
  if (WiFi.status() == WL_CONNECTED) 
  {
         HTTPClient http;
-
-        http.begin("https://192.168.1.125/api/add.php");
+        /*DHT11*/
+        http.begin("https://192.168.1.125/api/dht_add.php");
 
         String postData = "temp="; 
         postData = postData + (int)temperature; 
@@ -68,8 +71,31 @@ void loop()
         }
 
         http.end();
-    }
+        /*flame*/
+        int flameValue = digitalRead(flamePin);
 
+        http.begin("https://192.168.1.125/api/flame_add.php");
+
+        String postData = "heat="; 
+        postData = postData + flameValue; 
+
+        http.addHeader("Content-Type", "application/x-www-form-urlencoded");
+
+        int httpCode = http.POST(postData);
+
+        if (httpCode > 0) 
+        {
+            String payload = http.getString();
+            Serial.println(payload);
+        } 
+        else 
+        {
+            Serial.println("Error on HTTP request");
+        }
+
+        http.end();
+
+  }
     delay(60000); 
 
 }
