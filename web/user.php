@@ -11,6 +11,7 @@ foreach($data as $key => $val)
     <head>
         <link rel="stylesheet" href="./public/user.css">
         <link rel="stylesheet" href="./public/button.css">
+        <script type="text/javascript" src="./public/user.js"></script>
         <meta charset="UTF-8">
         <title>mqtt demo</title>
     </head>
@@ -22,13 +23,13 @@ foreach($data as $key => $val)
     </td>
     <td>
     <label>';
-    if($data[$key]['dht11'] == "ON")
+    if($data[$key]['dht11'] == "true")
     {
-        echo '<input type ="checkbox" checked>';
+        echo '<input type ="checkbox" checked id = "dht11" onclick="check()">';
     }
     else
     {
-        echo '<input type ="checkbox">';
+        echo '<input type ="checkbox" id = "dht11">';
     }
     echo'
     <span><i></i></span>
@@ -41,13 +42,13 @@ foreach($data as $key => $val)
     </td>
     <td>
     <label>';
-    if($data[$key]['flame'] == "ON")
+    if($data[$key]['flame'] == "true")
     {
-        echo '<input type ="checkbox" checked>';
+        echo '<input type ="checkbox" checked id = "flame" onclick="check()">';
     }
     else
     {
-        echo '<input type ="checkbox">';
+        echo '<input type ="checkbox" id = "flame">';
     }
     echo'
     <span><i></i></span>
@@ -60,13 +61,13 @@ foreach($data as $key => $val)
     </td>
     <td>
     <label>';
-    if($data[$key]['led'] == "ON")
+    if($data[$key]['led'] == "true")
     {
-        echo '<input type ="checkbox" checked>';
+        echo '<input type ="checkbox" checked id = "led" onclick="check()">';
     }
     else
     {
-        echo '<input type ="checkbox">';
+        echo '<input type ="checkbox" id = "led">';
     }
     echo'
     <span><i></i></span>

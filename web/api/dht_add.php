@@ -1,4 +1,5 @@
 <?php
+    date_default_timezone_set("Etc/GMT-8");
     include "../lib/database.php";
     @$t = $_POST['temp'];
     @$h = $_POST['humi'];

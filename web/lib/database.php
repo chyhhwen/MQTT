@@ -154,5 +154,6 @@ class sql
             unset($pdo);
             return $comments;
         }
+
 }
 ?>

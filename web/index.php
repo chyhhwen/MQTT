@@ -1,9 +1,43 @@
 <?php
+    date_default_timezone_set("Etc/GMT-8");
     require_once("./lib/database.php");
     $sql = new sql();
-    $sql -> config("root","","mqtt","led");
-    $sql -> put_data(['id','state','time']);
-    $data = $sql -> led_sel();
+    $sql -> config("root","","mqtt","control");
+    $sql -> put_data(['id','dht11','flame','led','time']);
+    $data = $sql -> control_sel();
+    $dht = "";
+    $flame = "";
+    $led = "";
+    foreach($data as $key => $val)
+    {
+        $dht = $data[$key]['dht11'];
+        $flame = $data[$key]['flame'];
+        $led = $data[$key]['led'];
+    }
+    if($dht == "true")
+    {
+        $dht = "ON";
+    }
+    else
+    {
+        $dht = "OFF";
+    }
+    if($flame == "true")
+    {
+        $flame = "ON";
+    }
+    else
+    {
+        $flame = "OFF";
+    }
+    if($led == "true")
+    {
+        $led = "ON";
+    }
+    else
+    {
+        $led = "OFF";
+    }
     echo ' <html>
     <head>
         <link rel="stylesheet" href="./public/index.css">
@@ -19,14 +53,9 @@
         <tr>
             <td>LED</td>
         </tr>
-        <tr>';
-    foreach($data as $key => $val)
-    {
-        echo'
+        <tr>
         <td>狀態</td>
-        <td>'. $data[$key]['state'] .'</td>';
-    }
-    echo'
+        <td>'. $led .'</td>
     </tr>
     </table>
     <table>
@@ -41,7 +70,7 @@
     {
         echo'
         <td>狀態</td>
-        <td>'. $data[$key]['state'] .'</td>
+        <td>'. $dht .'</td>
         </tr>
         <tr>
         <td>溫度</td>
@@ -65,7 +94,7 @@
             </tr>
             <tr>
                 <td>狀態</td>
-                <td>'. $data[$key]['state'] .'</td>
+                <td>'. $flame .'</td>
             </tr>
             <tr>
                 <td>熱度</td>
@@ -78,7 +107,7 @@
             <table>
                 <tr>
                     <td>時間</td>
-                    <td>'. $data[$key]['time'] .'</td>
+                    <td>'. date('Y-m-d-H-i-s') .'</td>
                 </tr>
             </table>
         </footer>
