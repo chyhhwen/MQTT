@@ -42,11 +42,11 @@
     <head>
         <link rel="stylesheet" href="./public/index.css">
         <meta charset="UTF-8">
-        <title>mqtt demo</title>
+        <title>物聯網測試</title>
     </head>
     <body>
     <nav>
-        <span style="padding-left:40vw;">MQTT測試</span>
+        <span style="padding-left:40vw;">物聯網測試</span>
     </nav>
     <div class="state">
         <table>
